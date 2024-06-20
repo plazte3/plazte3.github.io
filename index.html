@@ -7,21 +7,59 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
+    <div class="container">
         <h1>Diccionario de Domótica</h1>
-    </header>
-    
-    <main>
-        <div class="terms-container" id="terms-container">
-            <!-- Aquí se generarán dinámicamente los términos -->
+        <input type="text" id="search" class="search-bar" placeholder="Buscar término...">
+        <div id="terms">
+            <div class="term" data-term="Automatización">
+                <h2>Automatización</h2>
+                <p>Proceso de utilizar tecnología para realizar tareas de forma automática, sin intervención humana.</p>
+            </div>
+            <div class="term" data-term="IoT (Internet de las Cosas)">
+                <h2>IoT (Internet de las Cosas)</h2>
+                <p>Red de dispositivos físicos que se comunican e intercambian datos a través de internet.</p>
+            </div>
+            <div class="term" data-term="Sensores">
+                <h2>Sensores</h2>
+                <p>Dispositivos que detectan y responden a algún tipo de entrada del entorno físico.</p>
+            </div>
+            <div class="term" data-term="Sistema de Energía Solar">
+                <h2>Sistema de Energía Solar</h2>
+                <p>Tecnología que utiliza paneles solares para generar electricidad en una vivienda.</p>
+            </div>
+            <div class="term" data-term="Automatización de Puertas">
+                <h2>Automatización de Puertas</h2>
+                <p>Sistema que permite abrir y cerrar puertas automáticamente por comodidad o seguridad.</p>
+            </div>
+            <div class="term" data-term="Sensor de Humedad">
+                <h2>Sensor de Humedad</h2>
+                <p>Dispositivo que mide la humedad del aire y puede activar otros dispositivos en respuesta.</p>
+            </div>
+            <div class="term" data-term="Automatización de Persianas">
+                <h2>Automatización de Persianas</h2>
+                <p>Sistema que permite controlar la apertura y cierre de persianas de forma automática.</p>
+            </div>
+            <div class="term" data-term="Domótica">
+                <h2>Domótica</h2>
+                <p>Tecnología que integra sistemas de automatización para controlar dispositivos electrónicos y electrodomésticos en un hogar.</p>
+            </div>
+            <div class="term" data-term="Red de Sensores">
+                <h2>Red de Sensores</h2>
+                <p>Conjunto de dispositivos de detección distribuidos que se comunican entre sí para recoger y transmitir datos.</p>
+            </div>
+            <div class="term" data-term="Casa Inteligente">
+                <h2>Casa Inteligente</h2>
+                <p>Vivienda equipada con dispositivos electrónicos conectados que permiten automatizar tareas y gestionar recursos de manera eficiente.</p>
+            </div>
         </div>
-    </main>
+    </div>
 
-    <div class="modal" id="modal">
-        <div class="modal-content" id="modal-content">
-            <span class="close-button" id="close-button">&times;</span>
-            <h2 id="modal-term"></h2>
-            <p id="modal-description"></p>
+    <!-- Modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2 id="modalTitle"></h2>
+            <p id="modalDescription"></p>
         </div>
     </div>
 
