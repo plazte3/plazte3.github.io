@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diccionario de Domótica</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e9ecef;
+        }
+        .container {
+            width: 90%;
+            max-width: 600px;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            margin-top: 40px;
+        }
+        h1 {
+            text-align: center;
+            color: #007BFF;
+            margin-bottom: 20px;
+        }
+        .term {
+            border-bottom: 1px solid #ccc;
+            padding: 15px 0;
+            cursor: pointer;
+        }
+        .term:last-child {
+            border-bottom: none;
+        }
+        .term h2 {
+            margin: 0;
+            font-size: 1.4em;
+            color: #333;
+        }
+        .term p {
+            margin: 8px 0 0 0;
+            color: #666;
+            line-height: 1.6;
+        }
+        .search-bar {
+            width: 100%;
+            padding: 12px;
+            font-size: 1em;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            width: 90%;
+            max-width: 500px;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Diccionario de Domótica</h1>
+        <input type="text" id="search" class="search-bar" placeholder="Buscar término...">
+        <div id="terms">
+            <div class="term" onclick="showModal('Automatización', 'Proceso de utilizar tecnología para realizar tareas de forma automática, sin intervención humana.')">
+                <h2>Automatización</h2>
+                <p>Proceso de utilizar tecnología para realizar tareas de forma automática, sin intervención humana.</p>
+            </div>
+            <div class="term" onclick="showModal('IoT (Internet de las Cosas)', 'Red de dispositivos físicos que se comunican e intercambian datos a través de internet.')">
+                <h2>IoT (Internet de las Cosas)</h2>
+                <p>Red de dispositivos físicos que se comunican e intercambian datos a través de internet.</p>
+            </div>
+            <div class="term" onclick="showModal('Sensores', 'Dispositivos que detectan y responden a algún tipo de entrada del entorno físico.')">
+                <h2>Sensores</h2>
+                <p>Dispositivos que detectan y responden a algún tipo de entrada del entorno físico.</p>
+            </div>
+            <div class="term" onclick="showModal('Controlador', 'Dispositivo que gestiona y controla los sistemas domóticos en una vivienda.')">
+                <h2>Controlador</h2>
+                <p>Dispositivo que gestiona y controla los sistemas domóticos en una vivienda.</p>
+            </div>
+            <div class="term" onclick="showModal('Casa Inteligente', 'Hogar equipado con dispositivos conectados que permiten la automatización y el control remoto.')">
+                <h2>Casa Inteligente</h2>
+                <p>Hogar equipado con dispositivos conectados que permiten la automatización y el control remoto.</p>
+            </div>
+            <div class="term" onclick="showModal('Actuadores', 'Dispositivos que reciben señales de control para realizar una acción física.')">
+                <h2>Actuadores</h2>
+                <p>Dispositivos que reciben señales de control para realizar una acción física.</p>
+            </div>
+            <div class="term" onclick="showModal('Escenarios', 'Configuraciones predefinidas de dispositivos domóticos que se activan para crear ambientes específicos.')">
+                <h2>Escenarios</h2>
+                <p>Configuraciones predefinidas de dispositivos domóticos que se activan para crear ambientes específicos.</p>
+            </div>
+            <div class="term" onclick="showModal('Zigbee', 'Estándar de comunicación inalámbrica utilizado en la domótica para la conexión de dispositivos.')">
+                <h2>Zigbee</h2>
+                <p>Estándar de comunicación inalámbrica utilizado en la domótica para la conexión de dispositivos.</p>
+            </div>
+            <div class="term" onclick="showModal('Red Mesh', 'Tipo de red donde los dispositivos se conectan entre sí, creando una malla de comunicación.')">
+                <h2>Red Mesh</h2>
+                <p>Tipo de red donde los dispositivos se conectan entre sí, creando una malla de comunicación.</p>
+            </div>
+            <div class="term" onclick="showModal('Alexa', 'Asistente virtual desarrollado por Amazon que controla dispositivos domóticos mediante comandos de voz.')">
+                <h2>Alexa</h2>
+                <p>Asistente virtual desarrollado por Amazon que controla dispositivos domóticos mediante comandos de voz.</p>
+            </div>
+            <div class="term" onclick="showModal('Google Home', 'Dispositivo y asistente virtual de Google que permite controlar la domótica mediante comandos de voz.')">
+                <h2>Google Home</h2>
+                <p>Dispositivo y asistente virtual de Google que permite controlar la domótica mediante comandos de voz.</p>
+            </div>
+            <div class="term" onclick="showModal('IFTTT', 'Servicio que permite crear cadenas de condiciones, facilitando la integración y automatización de servicios y dispositivos.')">
+                <h2>IFTTT</h2>
+                <p>Servicio que permite crear cadenas de condiciones, facilitando la integración y automatización de servicios y dispositivos.</p>
+            </div>
+            <div class="term" onclick="showModal('Interruptores Inteligentes', 'Dispositivos que permiten controlar la iluminación de una casa de manera remota y automatizada.')">
+                <h2>Interruptores Inteligentes</h2>
+                <p>Dispositivos que permiten controlar la iluminación de una casa de manera remota y automatizada.</p>
+            </div>
+            <div class="term" onclick="showModal('Termostato Inteligente', 'Dispositivo que regula la temperatura de una vivienda de manera automatizada y eficiente.')">
+                <h2>Termostato Inteligente</h2>
+                <p>Dispositivo que regula la temperatura de una vivienda de manera automatizada y eficiente.</p>
+            </div>
+            <div class="term" onclick="showModal('Cerradura Inteligente', 'Sistema de bloqueo electrónico que se puede controlar mediante una aplicación móvil o comandos de voz.')">
+                <h2>Cerradura Inteligente</h2>
+                <p>Sistema de bloqueo electrónico que se puede controlar mediante una aplicación móvil o comandos de voz.</p>
+            </div>
+            <div class="term" onclick="showModal('Cámara IP', 'Dispositivo de videovigilancia que transmite señales de video a través de Internet.')">
+                <h2>Cámara IP</h2>
+                <p>Dispositivo de videovigilancia que transmite señales de video a través de Internet.</p>
+            </div>
+            <div class="term" onclick="showModal('Gateway', 'Dispositivo que actúa como un puente entre diferentes redes de comunicación en una casa inteligente.')">
+                <h2>Gateway</h2>
+                <p>Dispositivo que actúa como un puente entre diferentes redes de comunicación en una casa inteligente.</p>
+            </div>
+            <div class="term" onclick="showModal('Inteligencia Artificial', 'Tecnología que permite a las máquinas aprender y tomar decisiones basadas en datos.')">
+                <h2>Inteligencia Artificial</h2>
+                <p>Tecnología que permite a las máquinas aprender y tomar decisiones basadas en datos.</p>
+            </div>
+            <div class="term" onclick="showModal('Red Z-Wave', 'Protocolo de comunicación inalámbrica diseñado para la automatización del hogar.')">
+                <h2>Red Z-Wave</h2>
+                <p>Protocolo de comunicación inalámbrica diseñado para la automatización del hogar.</p>
+            </div>
+            <div class="term" onclick="showModal('Control por Voz', 'Tecnología que permite controlar dispositivos mediante comandos de voz.')">
+                <h2>Control por Voz</h2>
+                <p>Tecnología que permite controlar dispositivos mediante comandos de voz.</p>
+            </div>
+            <div class="term" onclick="showModal('Batería de Respaldo', 'Sistema de energía que proporciona electricidad en caso de un corte de energía.')">
+                <h2>Batería de Respaldo</h2>
+                <p>Sistema de energía que proporciona electricidad en caso de un corte de energía.</p>
+            </div>
+            <div class="term" onclick="showModal('Cerradura Biométrica', 'Cerradura que utiliza datos biométricos, como huellas digitales, para conceder acceso.')">
+                <h2>Cerradura Biométrica</h2>
+                <p>Cerradura que utiliza datos biométricos, como huellas digitales, para conceder acceso.</p>
+            </div>
+            <div class="term" onclick="showModal('Enchufe Inteligente', 'Dispositivo que permite controlar el encendido y apagado de aparatos electrónicos de forma remota.')">
+                <h2>Enchufe Inteligente</h2>
+                <p>Dispositivo que permite controlar el encendido y apagado de aparatos electrónicos de forma remota.</p>
+            </div>
+            <div class="term" onclick="showModal('Detección de Movimiento', 'Tecnología que detecta el movimiento en un área específica para activar dispositivos.')">
+                <h2>Detección de Movimiento</h2>
+                <p>Tecnología que detecta el movimiento en un área específica para activar dispositivos.</p>
+            </div>
+            <div class="term" onclick="showModal('Cámara de Seguridad', 'Dispositivo que monitorea y graba actividades para la seguridad del hogar.')">
+                <h2>Cámara de Seguridad</h2>
+                <p>Dispositivo que monitorea y graba actividades para la seguridad del hogar.</p>
+            </div>
+            <div class="term" onclick="showModal('Dispositivo Wearable', 'Tecnología portátil que puede integrarse con sistemas domóticos para monitorización y control.')">
+                <h2>Dispositivo Wearable</h2>
+                <p>Tecnología portátil que puede integrarse con sistemas domóticos para monitorización y control.</p>
+            </div>
+            <div class="term" onclick="showModal('Iluminación Ambiental', 'Sistema de iluminación que se ajusta automáticamente para mejorar el ambiente de una habitación.')">
+                <h2>Iluminación Ambiental</h2>
+                <p>Sistema de iluminación que se ajusta automáticamente para mejorar el ambiente de una habitación.</p>
+            </div>
+            <div class="term" onclick="showModal('Asistente Virtual', 'Software que ayuda a los usuarios mediante comandos de voz para realizar tareas y controlar dispositivos.')">
+                <h2>Asistente Virtual</h2>
+                <p>Software que ayuda a los usuarios mediante comandos de voz para realizar tareas y controlar dispositivos.</p>
+            </div>
+            <div class="term" onclick="showModal('Sistema de Alarma', 'Conjunto de dispositivos diseñados para detectar intrusiones no autorizadas y alertar a los usuarios.')">
+                <h2>Sistema de Alarma</h2>
+                <p>Conjunto de dispositivos diseñados para detectar intrusiones no autorizadas y alertar a los usuarios.</p>
+            </div>
+            <div class="term" onclick="showModal('Red Inalámbrica', 'Tecnología que permite la comunicación entre dispositivos sin necesidad de cables.')">
+                <h2>Red Inalámbrica</h2>
+                <p>Tecnología que permite la comunicación entre dispositivos sin necesidad de cables.</p>
+            </div>
+            <div class="term" onclick="showModal('Automatización de Iluminación', 'Sistema que permite el control automático de las luces en una vivienda.')">
+                <h2>Automatización de Iluminación</h2>
+                <p>Sistema que permite el control automático de las luces en una vivienda.</p>
+            </div>
+            <div class="term" onclick="showModal('Sistema de Audio Multi-Room', 'Tecnología que permite reproducir música en diferentes habitaciones de manera sincronizada.')">
+                <h2>Sistema de Audio Multi-Room</h2>
+                <p>Tecnología que permite reproducir música en diferentes habitaciones de manera sincronizada.</p>
+            </div>
+            <div class="term" onclick="showModal('Cámara de Timbre', 'Dispositivo que combina una cámara de seguridad con un timbre, permitiendo ver quién está en la puerta.')">
+                <h2>Cámara de Timbre</h2>
+                <p>Dispositivo que combina una cámara de seguridad con un timbre, permitiendo ver quién está en la puerta.</p>
+            </div>
+            <div class="term" onclick="showModal('Monitoreo Remoto', 'Capacidad de supervisar y controlar dispositivos domóticos desde una ubicación distante.')">
+                <h2>Monitoreo Remoto</h2>
+                <p>Capacidad de supervisar y controlar dispositivos domóticos desde una ubicación distante.</p>
+            </div>
+            <div class="term" onclick="showModal('Red Local', 'Red de comunicación que conecta dispositivos dentro de una casa o edificio.')">
+                <h2>Red Local</h2>
+                <p>Red de comunicación que conecta dispositivos dentro de una casa o edificio.</p>
+            </div>
+            <div class="term" onclick="showModal('Cierre Automático', 'Sistema que permite cerrar puertas y ventanas automáticamente por seguridad o comodidad.')">
+                <h2>Cierre Automático</h2>
+                <p>Sistema que permite cerrar puertas y ventanas automáticamente por seguridad o comodidad.</p>
+            </div>
+            <div class="term" onclick="showModal('Electrodomésticos Inteligentes', 'Aparatos que pueden ser controlados y monitorizados de forma remota para mayor eficiencia.')">
+                <h2>Electrodomésticos Inteligentes</h2>
+                <p>Aparatos que pueden ser controlados y monitorizados de forma remota para mayor eficiencia.</p>
+            </div>
+            <div class="term" onclick="showModal('Control Climático', 'Sistema que gestiona la calefacción, ventilación y aire acondicionado de una vivienda.')">
+                <h2>Control Climático</h2>
+                <p>Sistema que gestiona la calefacción, ventilación y aire acondicionado de una vivienda.</p>
+            </div>
+            <div class="term" onclick="showModal('Alarma de Humo Inteligente', 'Dispositivo que detecta humo y envía alertas a los usuarios a través de sus teléfonos.')">
+                <h2>Alarma de Humo Inteligente</h2>
+                <p>Dispositivo que detecta humo y envía alertas a los usuarios a través de sus teléfonos.</p>
+            </div>
+            <div class="term" onclick="showModal('Cámara de Interior', 'Dispositivo de seguridad para monitorear el interior de la vivienda.')">
+                <h2>Cámara de Interior</h2>
+                <p>Dispositivo de seguridad para monitorear el interior de la vivienda.</p>
+            </div>
+            <div class="term" onclick="showModal('Ventanas Inteligentes', 'Ventanas que pueden ser controladas automáticamente para abrirse o cerrarse.')">
+                <h2>Ventanas Inteligentes</h2>
+                <p>Ventanas que pueden ser controladas automáticamente para abrirse o cerrarse.</p>
+            </div>
+            <div class="term" onclick="showModal('Sistema de Riego Automático', 'Sistema que controla el riego del jardín de forma automática y eficiente.')">
+                <h2>Sistema de Riego Automático</h2>
+                <p>Sistema que controla el riego del jardín de forma automática y eficiente.</p>
+            </div>
+            <div class="term" onclick="showModal('Detector de Gas', 'Dispositivo que detecta fugas de gas y alerta a los usuarios.')">
+                <h2>Detector de Gas</h2>
+                <p>Dispositivo que detecta fugas de gas y alerta a los usuarios.</p>
+            </div>
+            <div class="term" onclick="showModal('Automatización de Cortinas', 'Sistema que permite abrir y cerrar cortinas de forma automática o remota.')">
+                <h2>Automatización de Cortinas</h2>
+                <p>Sistema que permite abrir y cerrar cortinas de forma automática o remota.</p>
+            </div>
+            <div class="term" onclick="showModal('Cámara Exterior', 'Dispositivo de seguridad para monitorear el exterior de la vivienda.')">
+                <h2>Cámara Exterior</h2>
+                <p>Dispositivo de seguridad para monitorear el exterior de la vivienda.</p>
+            </div>
+            <div class="term" onclick="showModal('Control por Gestos', 'Tecnología que permite controlar dispositivos mediante gestos con las manos.')">
+                <h2>Control por Gestos</h2>
+                <p>Tecnología que permite controlar dispositivos mediante gestos con las manos.</p>
+            </div>
+            <div class="term" onclick="showModal('Sistema de Energía Solar', 'Tecnología que utiliza paneles solares para generar electricidad en una vivienda.')">
+                <h2>Sistema de Energía Solar</h2>
+                <p>Tecnología que utiliza paneles solares para generar electricidad en una vivienda.</p>
+            </div>
+            <div class="term" onclick="showModal('Automatización de Puertas', 'Sistema que permite abrir y cerrar puertas automáticamente por comodidad o seguridad.')">
+                <h2>Automatización de Puertas</h2>
+                <p>Sistema que permite abrir y cerrar puertas automáticamente por comodidad o seguridad.</p>
+            </div>
+            <div class="term" onclick="showModal('Sensor de Humedad', 'Dispositivo que mide la humedad del aire y puede activar otros dispositivos en respuesta.')">
+                <h2>Sensor de Humedad</h2>
+                <p>Dispositivo que mide la humedad del aire y puede activar otros dispositivos en respuesta.</p>
+            </div>
+            <div class="term" onclick="showModal('Automatización de Persianas', 'Sistema que permite controlar la apertura y cierre de persianas de forma automática.')">
+                <h2>Automatización de Persianas</h2>
+                <p>Sistema que permite controlar la apertura y cierre de persianas de forma automática.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2 id="modalTitle"></h2>
+            <p id="modalDescription"></p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('search').addEventListener('input', function() {
+            let searchTerm = this.value.toLowerCase();
+            let terms = document.querySelectorAll('.term');
+
+            terms.forEach(function(term) {
+                let termTitle = term.querySelector('h2').textContent.toLowerCase();
+                if(termTitle.includes(searchTerm)) {
+                    term.style.display = '';
+                } else {
+                    term.style.display = 'none';
+                }
+            });
+        });
+
+        function showModal(title, description) {
+            document.getElementById('modalTitle').textContent = title;
+            document.getElementById('modalDescription').textContent = description;
+            document.getElementById('myModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('myModal').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
