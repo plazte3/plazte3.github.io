@@ -4,7 +4,7 @@ document.getElementById('search').addEventListener('input', function() {
 
     terms.forEach(function(term) {
         let termTitle = term.querySelector('h2').textContent.toLowerCase();
-        if(termTitle.includes(searchTerm)) {
+        if (termTitle.includes(searchTerm)) {
             term.style.display = '';
         } else {
             term.style.display = 'none';
@@ -14,8 +14,8 @@ document.getElementById('search').addEventListener('input', function() {
 
 document.querySelectorAll('.term').forEach(function(term) {
     term.addEventListener('click', function() {
-        let title = term.querySelector('h2').textContent;
-        let description = term.querySelector('p').textContent;
+        let title = this.getAttribute('data-term');
+        let description = this.getAttribute('data-description');
         showModal(title, description);
     });
 });
