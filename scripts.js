@@ -33,31 +33,31 @@ const terms = [
     },
     {
         term: "Red de Sensores",
-        description: "Conjunto de dispositivos de detección distribuidos que se comunican entre sí para recoger y transmitir datos. Una red de sensores en la domótica permite monitorizar el entorno y mejorar la respuesta automática de los sistemas. Estas redes pueden incluir sensores de temperatura, humedad, movimiento y más, que trabajan juntos para proporcionar un entorno doméstico más seguro, eficiente y confortable."
+        description: "Conjunto de dispositivos de detección distribuidos que se comunican entre sí para recoger y transmitir datos. Una red de sensores en la domótica permite monitorizar el entorno del hogar en tiempo real. Estos sensores pueden medir parámetros como la temperatura, la humedad, la presencia y la calidad del aire, y transmitir los datos a un sistema centralizado para el análisis y la toma de decisiones automatizadas."
     },
     {
-        term: "Casa Inteligente",
-        description: "Vivienda equipada con dispositivos electrónicos conectados que permiten automatizar tareas y gestionar recursos de manera eficiente. Una casa inteligente mejora la seguridad, el confort y la eficiencia energética. Los sistemas en una casa inteligente pueden incluir la automatización de iluminación, climatización, seguridad, entretenimiento y más, todos controlados desde una plataforma centralizada que permite una gestión unificada y eficiente del hogar."
+        term: "Asistente Virtual",
+        description: "Software que utiliza inteligencia artificial para realizar tareas y responder a comandos de voz. Los asistentes virtuales, como Amazon Alexa y Google Assistant, pueden integrarse en sistemas domóticos para proporcionar un control manos libres de dispositivos inteligentes. Estos asistentes pueden realizar funciones como ajustar la temperatura, controlar la iluminación, reproducir música y proporcionar información en tiempo real, mejorando la interacción con la casa inteligente."
     },
     {
-        term: "Integración de Sistemas",
-        description: "Proceso de unir diferentes tecnologías y sistemas para trabajar juntos de manera armoniosa. La integración de sistemas en la domótica facilita el control centralizado y la interoperabilidad de dispositivos. Esto permite que los sistemas de seguridad, iluminación, climatización y otros trabajen juntos para proporcionar una experiencia de usuario más cohesiva y eficiente."
+        term: "Control Remoto",
+        description: "Dispositivo o aplicación que permite operar sistemas y dispositivos a distancia. El control remoto en la domótica facilita la gestión de dispositivos sin necesidad de interacción física directa. Los sistemas de control remoto pueden incluir aplicaciones móviles que permiten monitorear y controlar dispositivos desde cualquier lugar, proporcionando comodidad y flexibilidad adicionales. Además, pueden integrarse con asistentes virtuales para ofrecer una experiencia de usuario más intuitiva."
     },
     {
-        term: "Automatización de Jardines",
-        description: "Uso de tecnología para gestionar automáticamente el riego y el cuidado de plantas en el jardín. La automatización de jardines asegura un riego eficiente y adecuado, reduciendo el consumo de agua y mejorando la salud de las plantas. Estos sistemas pueden incluir sensores de humedad del suelo, sistemas de riego programables y controles remotos, proporcionando un cuidado del jardín más inteligente y eficiente."
+        term: "Sistema de Seguridad",
+        description: "Conjunto de dispositivos y tecnologías diseñados para proteger el hogar de intrusiones y otros peligros. Los sistemas de seguridad en la domótica pueden incluir cámaras de vigilancia, sensores de puertas y ventanas, alarmas y cerraduras inteligentes. Estos sistemas pueden integrarse con aplicaciones móviles para proporcionar alertas en tiempo real y permitir el control remoto, ofreciendo una capa adicional de protección y tranquilidad para los propietarios."
     },
     {
-        term: "Asistentes de Voz",
-        description: "Dispositivos que utilizan reconocimiento de voz para realizar tareas y responder preguntas. Los asistentes de voz en la domótica permiten el control manos libres de dispositivos inteligentes en el hogar. Estos asistentes, como Amazon Alexa o Google Assistant, pueden integrarse con sistemas de iluminación, seguridad, entretenimiento y más, proporcionando una forma intuitiva y conveniente de interactuar con la casa inteligente."
+        term: "Termostato Inteligente",
+        description: "Dispositivo que controla la temperatura del hogar de forma automática y se puede programar a distancia. Los termostatos inteligentes mejoran la eficiencia energética y proporcionan mayor comodidad al usuario. Estos dispositivos pueden aprender las preferencias de temperatura del usuario y ajustar automáticamente el sistema de calefacción o refrigeración para mantener un ambiente confortable. Además, pueden integrarse con otros sistemas domóticos para ofrecer un control de clima más completo."
     },
     {
-        term: "Seguridad Inteligente",
-        description: "Sistemas que utilizan tecnología avanzada para proteger el hogar de intrusos y otros peligros. La seguridad inteligente incluye cámaras de vigilancia, sensores de puertas y ventanas, alarmas y más. Estos sistemas pueden integrarse con aplicaciones móviles para proporcionar alertas en tiempo real y permitir el control remoto, ofreciendo una mayor tranquilidad y protección."
+        term: "Riego Inteligente",
+        description: "Sistema de riego que se ajusta automáticamente según las condiciones del suelo y el clima. El riego inteligente ayuda a conservar agua y a mantener el jardín en condiciones óptimas. Estos sistemas pueden incluir sensores de humedad del suelo y estaciones meteorológicas que ajustan los horarios y la cantidad de riego, optimizando el uso de recursos y asegurando la salud de las plantas. Además, pueden controlarse a distancia mediante aplicaciones móviles."
     },
     {
         term: "Iluminación Inteligente",
-        description: "Sistema de luces que se pueden controlar de forma remota y programar para ajustarse a diferentes necesidades. La iluminación inteligente mejora la eficiencia energética y proporciona mayor comodidad. Estos sistemas pueden incluir bombillas inteligentes, interruptores conectados y sensores de movimiento, y pueden controlarse mediante aplicaciones móviles, asistentes de voz o automatización programada."
+        description: "Sistema de luces que se puede controlar de forma remota y programar para ajustarse a diferentes necesidades. La iluminación inteligente mejora la eficiencia energética y proporciona mayor comodidad. Estos sistemas pueden incluir bombillas inteligentes, interruptores conectados y sensores de movimiento, y pueden controlarse mediante aplicaciones móviles, asistentes de voz o automatización programada, permitiendo un control flexible y eficiente de la iluminación del hogar."
     },
     {
         term: "Red de Área Local (LAN)",
@@ -132,29 +132,40 @@ document.getElementById('search').addEventListener('input', function() {
     let terms = document.querySelectorAll('.term');
 
     terms.forEach(function(term) {
-        let termTitle = term.querySelector('h2').textContent.toLowerCase();
-        if(termTitle.includes(searchTerm)) {
-            term.style.display = '';
+        let title = term.querySelector('h2').textContent.toLowerCase();
+        let description = term.querySelector('p').textContent.toLowerCase();
+
+        if (title.includes(searchTerm) || description.includes(searchTerm)) {
+            term.style.display = 'block';
         } else {
             term.style.display = 'none';
         }
     });
 });
 
-document.querySelectorAll('.term').forEach(item => {
-    item.addEventListener('click', function() {
-        let title = this.querySelector('h2').textContent;
-        let description = this.getAttribute('data-description');
-        showModal(title, description);
-    });
+const modal = document.getElementById('myModal');
+const modalTitle = document.getElementById('modalTitle');
+const modalDescription = document.getElementById('modalDescription');
+
+termsContainer.addEventListener('click', function(event) {
+    if (event.target.closest('.term')) {
+        let term = event.target.closest('.term');
+        let title = term.querySelector('h2').textContent;
+        let description = term.getAttribute('data-description');
+        
+        modalTitle.textContent = title;
+        modalDescription.textContent = description;
+
+        modal.style.display = 'flex';
+    }
 });
 
-function showModal(title, description) {
-    document.getElementById('modalTitle').textContent = title;
-    document.getElementById('modalDescription').textContent = description;
-    document.getElementById('myModal').style.display = 'flex';
+function closeModal() {
+    modal.style.display = 'none';
 }
 
-function closeModal() {
-    document.getElementById('myModal').style.display = 'none';
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = 'none';
+    }
 }

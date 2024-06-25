@@ -4,17 +4,17 @@ body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f7f9;
+    background-color: #f0f0f0;
 }
 
 .container {
     width: 90%;
     max-width: 800px;
     margin: auto;
-    background-color: #ffffff;
+    background-color: #fff;
     padding: 20px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: 8px;
     margin-top: 40px;
     animation: fade-in 0.5s ease-out;
 }
@@ -26,31 +26,43 @@ body {
 
 h1 {
     text-align: center;
-    color: #007BFF;
+    color: #007BFF; /* Azul claro principal */
     margin-bottom: 20px;
-    font-size: 2.5em;
+    font-size: 2em;
+}
+
+.search-bar {
+    width: 100%;
+    padding: 12px;
+    font-size: 1em;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.terms-container {
+    display: grid;
+    gap: 10px;
 }
 
 .term {
-    border-bottom: 1px solid #ddd;
-    padding: 15px 0;
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
-}
-
-.term:last-child {
-    border-bottom: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .term:hover {
-    background-color: #e3f2fd;
-    color: #007BFF;
+    background-color: #f0f0f0;
     transform: scale(1.02);
 }
 
 .term h2 {
     margin: 0;
-    font-size: 1.8em;
+    font-size: 1.6em;
     color: #333;
 }
 
@@ -58,16 +70,6 @@ h1 {
     margin: 8px 0 0 0;
     color: #666;
     line-height: 1.6;
-}
-
-.search-bar {
-    width: 100%;
-    padding: 12px;
-    font-size: 1.2em;
-    margin-bottom: 20px;
-    box-sizing: border-box;
-    border: 1px solid #ddd;
-    border-radius: 8px;
 }
 
 .modal {
@@ -82,26 +84,25 @@ h1 {
     background-color: rgba(0, 0, 0, 0.5);
     justify-content: center;
     align-items: center;
-    animation: fade-in 0.3s ease;
 }
 
 .modal-content {
-    background-color: #ffffff;
+    background-color: #fff;
     padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     width: 90%;
-    max-width: 600px;
-    animation: slide-up 0.4s ease;
+    max-width: 500px;
+    animation: zoom-in 0.3s ease-out;
 }
 
-@keyframes slide-up {
-    from { opacity: 0; transform: translateY(50px); }
-    to { opacity: 1; transform: translateY(0); }
+@keyframes zoom-in {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
 }
 
 .close {
-    color: #aaa;
+    color: #777; /* Color de cierre menos intenso */
     float: right;
     font-size: 28px;
     font-weight: bold;
@@ -111,5 +112,24 @@ h1 {
 
 .close:hover,
 .close:focus {
-    color: #333;
+    color: #333; /* Color de cierre más intenso al pasar el mouse */
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 10px;
+    }
+    h1 {
+        font-size: 1.5em;
+    }
+    .modal-content {
+        padding: 15px;
+    }
+    .term {
+        padding: 12px;
+    }
+    .search-bar {
+        padding: 10px;
+        font-size: 0.9em;
+    }
 }
